@@ -6,7 +6,9 @@ COPY . .
 ENV CGO_ENABLED=0
 ENV BUILD_HOST=syncthing.net
 ENV BUILD_USER=docker
-RUN rm -f syncthing && go run build.go -no-upgrade build syncthing
+
+RUN echo $GOBIN
+RUN rm -f syncthing && go run build.go -goos linux -goarch arm -no-upgrade build syncthing
 
 FROM alpine
 
